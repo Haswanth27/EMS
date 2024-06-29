@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+div.form-group {
+  margin-bottom: 8px;
+}
+
+div.form-group label {
+  padding-right: 4px;
+}

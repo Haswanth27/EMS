@@ -1,0 +1,36 @@
+<label class="block" style="margin-bottom: 2px">Filter by:</label>
+<input
+  id="filter"
+  [ngModel]="filterText"
+  (ngModelChange)="onFilter($event)"
+  name="filter"
+/>
+<p style="margin-top: 8px">
+  Total Number of Employees:
+  <span id="count">{{ filteredEmployees?.length }}</span>
+</p>
+
+<table border="2">
+  <tr>
+    <th *ngFor="let header of allEmpHeaders">
+      {{ header }}
+    </th>
+  </tr>
+  <tr *ngFor="let emp of filteredEmployees; let i = index">
+    <td>
+      <a [routerLink]="['/employees', emp.id]">{{ emp.id }}</a>
+    </td>
+    <td>{{ emp.name }}</td>
+    <td>{{ emp.location }}</td>
+    <td>{{ emp.email }}</td>
+    <td>{{ emp.mobile }}</td>
+    <td>
+      <a [routerLink]="['/employees/editEmployee', emp.id]">Edit{{ emp.id }}</a>
+    </td>
+    <td>
+      <a href="javascript:void(0)" (click)="deleteEmployee(emp.id)"
+        >Delete{{ emp.id }}</a
+      >
+    </td>
+  </tr>
+</table>

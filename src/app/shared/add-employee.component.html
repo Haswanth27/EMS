@@ -1,0 +1,88 @@
+<div>
+  <div *ngIf="path === 'add'">Add Employee</div>
+  <div *ngIf="path === 'edit'">Edit Employee</div>
+
+  <div style="margin-top: 15px">
+    <form
+      #employeeForm="ngForm"
+      class="col-md-6"
+      *ngIf="employee"
+      (ngSubmit)="onSubmit(employeeForm.value)"
+    >
+      <div class="form-group">
+        <label for="fname">Employee Name</label>
+        <input
+          [(ngModel)]="employee.name"
+          class="form-control"
+          name="name"
+          type="text"
+          id="name"
+          minlength="3"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location</label>
+        <select
+          class="form-control"
+          [(ngModel)]="employee.location"
+          name="location"
+          id="location"
+          placeholder="select"
+          required
+        >
+          <option *ngFor="let l of locs" value="{{ l }}">{{ l }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          [(ngModel)]="employee.email"
+          class="form-control"
+          type="email"
+          email
+          name="email"
+          id="email"
+          pattern="[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input
+          [(ngModel)]="employee.mobile"
+          class="form-control"
+          name="mobile"
+          type="text"
+          id="mobile"
+          minlength="10"
+          maxlength="10"
+          pattern="^[0-9]+$"
+          required
+        />
+      </div>
+
+      <button
+        [disabled]="employeeForm.invalid"
+        type="submit"
+        id="add"
+        style="margin-top: 4px"
+        *ngIf="path === 'add'"
+      >
+        Submit
+      </button>
+      <button
+        [disabled]="employeeForm.invalid"
+        type="submit"
+        id="update"
+        style="margin-top: 4px"
+        *ngIf="path === 'edit'"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</div>
